@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Equation</title>
+</head>
+<body>
+    <h2>Add your equation below</h2>
+    <div class="main-content">
+        <form class="form-control" th:action="@{/saveEquation}" method="post" th:object="${equation}">
+            <div class="mb-3 mt-3">
+                <label class="form-label">Equation expression:</label>
+                <input type="text" placeholder="Enter expression" th:field="*{expression}" class="form-control col-12 col-sm-12 col-md-6 input-width mb-3" autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('expression')}" th:errors="*{expression}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of equations</title>
+</head>
+<body>
+    <div class="mt-4">
+        <a class="btn button_default text-white" th:href="@{/createEquation}">Add new equation</a>
+    </div>
+    <hr/>
+    <h3>List of Equations</h3>
+    <div class="main-content">
+        <div th:each="equation : ${equations}">
+            <p th:text="${equation.expression}"></p>
+            <a class="btn btn-success" th:href="@{/addRoot(id=${equation.getId()})}">Solve equation</a>
+        </div>
+    </div>
+</body>
+</html>

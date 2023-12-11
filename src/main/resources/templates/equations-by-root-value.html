@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Equations By Root Value</title>
+</head>
+<body>
+<h3>Enter root for the equation(s) you want to find:</h3>
+<form class="form-control" method="get" th:action="@{/findByRootValue}">
+    <div class="mb-3 mt-3">
+        <label for="rootValue" class="form-label">Root value:</label>
+        <input id="rootValue" type="number" name="rootValue" class="form-control" th:field="${root.value}">
+        <input id="equationId" type="hidden" name="equationId" class="form-control" th:field="${root.equationId}">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</body>
+</html>

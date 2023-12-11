@@ -20,7 +20,7 @@ public class RootController {
     private final EquationService equationService;
 
     @PostMapping("/saveRoot")
-    public String saveRoot(Root root, Model model) throws ScriptException {
+    public String saveRoot(Root root, Model model) {
         rootService.saveRoot(root);
         model.addAttribute("root", root);
         return "redirect:/";

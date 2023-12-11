@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 @Component
-public class Validator {
+public class Checker {
     public boolean areBracketsBalanced(String expr) {
         StringBuilder bracketString = new StringBuilder();
         for (int i = 0; i < expr.length(); i++) {

@@ -6,7 +6,7 @@ import com.vakaliuk.mathhelper.entity.Root;
 import com.vakaliuk.mathhelper.exception.ExpressionNotValidException;
 import com.vakaliuk.mathhelper.repository.EquationRepository;
 import com.vakaliuk.mathhelper.repository.RootRepository;
-import com.vakaliuk.mathhelper.util.Validator;
+import com.vakaliuk.mathhelper.util.Checker;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ import java.util.List;
 public class EquationService {
     private final EquationRepository equationRepository;
     private final RootRepository rootRepository;
-    private final Validator validator;
+    private final Checker checker;
 
     public List<Equation> getEquations() {
         return equationRepository.findAll();
     }
 
     public void saveEquation(Equation equation) {
-        if (!validator.areBracketsBalanced(equation.getExpression()) || validator.containsConsecutiveArithmeticOperators(equation.getExpression())) {
+        if (!checker.areBracketsBalanced(equation.getExpression()) || checker.containsConsecutiveArithmeticOperators(equation.getExpression())) {
             throw new ExpressionNotValidException("Expression is not valid (either brackets are not balanced or expression " +
                     "contains unacceptable consecutive arithmetic operators)");
         }
@@ -46,7 +46,7 @@ public class EquationService {
         return equations;
     }
 
-    public List<Equation> getFilteredEquations(EquationFilterDto equationFilterDto) {
+    public List<Equation> getEquationsFilteredByRootValue(EquationFilterDto equationFilterDto) {
         Double rootValue = equationFilterDto.getRootValue();
         List<Root> roots = rootRepository.findByRootValue(rootValue);
         List<Equation> equations = new ArrayList<>();
@@ -54,5 +54,18 @@ public class EquationService {
             equations.add(equationRepository.findById(root.getEquationId()).get());
         }
         return equations;
+    }
+
+    public List<Equation> getEquationsFilteredByRootAmount(EquationFilterDto equationFilterDto) {
+        Integer rootAmount = equationFilterDto.getRootAmount();
+        List<Equation> equations = equationRepository.findAll();
+        List<Equation> equationsFilteredByRootAmount = new ArrayList<>();
+        for (Equation equation : equations) {
+            List<Root> roots = rootRepository.findByEquationId(equation.getId());
+            if (roots.size() == rootAmount) {
+                equationsFilteredByRootAmount.add(equation);
+            }
+        }
+        return equationsFilteredByRootAmount;
     }
 }

@@ -31,6 +31,7 @@ public class EquationController {
         List<Equation> equations = equationService.getEquations();
         model.addAttribute("equations", equations);
         model.addAttribute("rootValue", new Root().getValue());
+        model.addAttribute("rootAmount", new Equation());
         model.addAttribute("filter", new EquationFilterDto());
         return "equations";
     }

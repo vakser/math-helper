@@ -9,8 +9,6 @@ import com.vakaliuk.mathhelper.util.Checker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class RootService {
@@ -28,7 +26,4 @@ public class RootService {
         rootRepository.save(root);
     }
 
-    public List<Root> findRootsByEquationId(Long equationId) {
-        return rootRepository.findByEquationId(equationId);
-    }
 }

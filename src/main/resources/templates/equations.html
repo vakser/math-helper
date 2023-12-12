@@ -8,15 +8,6 @@
     <div class="mt-4">
         <a class="btn button_default text-white" th:href="@{/createEquation}">Add new equation</a>
     </div>
-<!--    <form method="get" th:object="${filter}" th:action="@{/filterEquationsByRootValue}">-->
-<!--        <div>-->
-<!--            <h4>Search by root value</h4>-->
-<!--            <input type="number" placeholder="Enter root value" th:field="${rootValue}" class="form-control"/>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <input type="submit" value="Submit" class="btn button_default form-control"/>-->
-<!--        </div>-->
-<!--    </form>-->
     <form method="get" th:object="${filter}" th:action="@{/filterEquationsByRootValue}">
         <div class="row mb-2">
             <div class="col-md-2 col-sm-6 col-12 mb-2">

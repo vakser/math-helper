@@ -37,15 +37,6 @@ public class EquationService {
         return equationRepository.findById(equationId).orElseThrow(() -> new EntityNotFoundException("Equation with id " + equationId + " not found"));
     }
 
-    public List<Equation> getEquationsByRootValue(double rootValue) {
-        List<Root> roots = rootRepository.findByRootValue(rootValue);
-        List<Equation> equations = new ArrayList<>();
-        for (Root root : roots) {
-            equations.add(equationRepository.findById(root.getEquationId()).get());
-        }
-        return equations;
-    }
-
     public List<Equation> getEquationsFilteredByRootValue(EquationFilterDto equationFilterDto) {
         Double rootValue = equationFilterDto.getRootValue();
         List<Root> roots = rootRepository.findByRootValue(rootValue);

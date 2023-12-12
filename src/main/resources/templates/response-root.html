@@ -8,7 +8,7 @@
 <div th:if="${notCorrect}" class="container p-5 my-5 border container-top-margin">
   <h1>You entered incorrect root.</h1>
   <p th:text="${message}"></p>
-  <a th:href="@{/}" class="btn button_default">Back to the list of equations</a>
+  <a th:href="@{'/addRoot?id=' + ${id}}" class="btn button_default">Back to equation</a>
 </div>
 </body>
 </html>

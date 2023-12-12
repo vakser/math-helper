@@ -21,7 +21,7 @@ public class RootService {
         String leftSideExpression = equation.getExpression().split("=")[0].replaceAll("x", String.valueOf(root.getValue()));
         String rightSideExpression = equation.getExpression().split("=")[1].replaceAll("x", String.valueOf(root.getValue()));
         if (!checker.isEquationRoot(leftSideExpression, rightSideExpression)) {
-            throw new RootNotCorrectException("Root is not correct");
+            throw new RootNotCorrectException("Root " + root.getValue() + " is not correct for equation " + equation.getExpression());
         }
         rootRepository.save(root);
     }

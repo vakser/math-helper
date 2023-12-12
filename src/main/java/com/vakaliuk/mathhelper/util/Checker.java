@@ -32,7 +32,7 @@ public class Checker {
         return (stack.isEmpty());
     }
 
-    public boolean containsConsecutiveArithmeticOperators(String expr) {
+    public boolean containsUnacceptableConsecutiveArithmeticOperators(String expr) {
         return expr.contains("++") || expr.contains("+*") || expr.contains("+/") || expr.contains("+=") ||
                expr.contains("-+") || expr.contains("-*") || expr.contains("-/") || expr.contains("-=") ||
                expr.contains("*+") || expr.contains("**") || expr.contains("*/") || expr.contains("*=") ||

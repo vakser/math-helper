@@ -18,10 +18,10 @@ public class RootService {
 
     public void saveRoot(Root root) {
         Equation equation = equationRepository.findById(root.getEquationId()).get();
-        String leftSideExpression = equation.getExpression().split("=")[0].replaceAll("x", String.valueOf(root.getValue()));
-        String rightSideExpression = equation.getExpression().split("=")[1].replaceAll("x", String.valueOf(root.getValue()));
+        String leftSideExpression = equation.getExpression().split("=")[0].replaceAll("x", String.valueOf(root.getRootValue()));
+        String rightSideExpression = equation.getExpression().split("=")[1].replaceAll("x", String.valueOf(root.getRootValue()));
         if (!checker.isEquationRoot(leftSideExpression, rightSideExpression)) {
-            throw new RootNotCorrectException("Root " + root.getValue() + " is not correct for equation " + equation.getExpression());
+            throw new RootNotCorrectException("Root " + root.getRootValue() + " is not correct for equation " + equation.getExpression());
         }
         rootRepository.save(root);
     }

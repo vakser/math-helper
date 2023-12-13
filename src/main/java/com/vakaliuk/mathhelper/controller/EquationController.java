@@ -32,7 +32,7 @@ public class EquationController {
     public String showEquations(Model model) {
         List<Equation> equations = equationService.getEquations();
         model.addAttribute("equations", equations);
-        model.addAttribute("rootValue", new Root().getValue());
+        model.addAttribute("rootValue", new Root().getRootValue());
         model.addAttribute("rootAmount", new Equation());
         model.addAttribute("filter", new EquationFilterDto());
         return "equations";

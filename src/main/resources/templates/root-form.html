@@ -7,17 +7,26 @@
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
-<div class="card mb-4 ms-5 me-5">
-    <h3>Enter root for the following equation:</h3>
-    <p th:text="${equation.expression}"></p>
+<div class="card mb-4 ms-5 me-5 mt-5">
+    <h3 class="ms-2">Enter root for the following equation:</h3>
+    <h2 class="ms-2" th:text="${equation.expression}"></h2>
+</div>
+<div class="card mb-4 ms-5 me-5 mt-5">
     <form class="form-control" method="post" th:action="@{/saveRoot}" th:object="${root}">
-        <div class="mb-3 mt-3">
-            <label class="form-label">Root value:</label>
-            <input type="number" placeholder="Enter root (digits only!)" class="form-control" th:field="*{value}" autofocus="autofocus">
-            <input type="hidden" class="form-control" th:field="*{equationId}">
+        <div class="row mb-2">
+            <div class="col-md-2 col-sm-6 col-12 mb-2 mt-2 ms-2 me-2">
+                <h4>Root value:</h4>
+                <input type="number" placeholder="Enter root (digits only!)" class="form-control" th:field="*{rootValue}">
+                <input type="hidden" class="form-control" th:field="*{equationId}">
+            </div>
+            <div class="col-12 col-sm-12 col-md-1 mb-2 mt-2 ms-2 me-2">
+                <button type="submit" value="Submit" class="btn button_default form-control">Save</button>
+            </div>
         </div>
-        <button type="submit" class="btn button_default">Save</button>
     </form>
+</div>
+<div class="ms-5 me-5 mt-5">
+    <a th:href="@{/}" class="btn button_default">Back to main page</a>
 </div>
 <script th:src="@{/js/bootstrap.js}"></script>
 <script th:src="@{/js/jquery-validator.js}"></script>

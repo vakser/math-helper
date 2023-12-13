@@ -24,8 +24,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class MathHelperApplicationModuleTests {
     @Autowired
-    private JdbcTemplate jdbc;
-    @Autowired
     private EquationRepository equationRepository;
     @Autowired
     private RootRepository rootRepository;
@@ -37,21 +35,43 @@ public class MathHelperApplicationModuleTests {
     private Checker checker;
 
     @Test
-    public void createEquationServiceTest() {
+    public void createEquationTest() {
         equationService.createEquation(new Equation("2*x+10=20"));
         Equation equation = equationRepository.findByExpression("2*x+10=20");
         assertEquals("2*x+10=20", equation.getExpression(), "find by expression");
     }
 
-//    @Test
-//    public void getEquationsForRoot() {
-//        //equationService.createEquation(new Equation("2*x+10=20"));
-//        equationService.createEquation(new Equation("10+15/x=13"));
-//        EquationFilterDto filterDto = new EquationFilterDto();
-//        filterDto.setRootValue(5.);
-//        List<Equation> equations = equationService.getEquationsFilteredByRootValue(filterDto);
-//        assertEquals(2, equations.size(), "Should be 2");
-//    }
+    @Test
+    public void createRootForEquationTest() {
+        Equation equation = equationRepository.findByExpression("2*x+10=20");
+        Root root = new Root();
+        root.setEquationId(equation.getId());
+        root.setRootValue(5.);
+        rootService.saveRoot(root);
+        List<Root> roots = rootRepository.findByEquationId(equation.getId());
+        Root savedRoot = roots.get(0);
+        assertEquals(5., savedRoot.getRootValue(), "Should be 5");
+    }
+
+    @Test
+    public void getEquationsForRootTest() {
+        equationService.createEquation(new Equation("5*x+10=25"));
+        equationService.createEquation(new Equation("10+9/x=13"));
+        Equation equation1 = equationRepository.findByExpression("5*x+10=25");
+        Equation equation2 = equationRepository.findByExpression("10+9/x=13");
+        Root root1 = new Root();
+        root1.setEquationId(equation1.getId());
+        root1.setRootValue(3.);
+        rootService.saveRoot(root1);
+        Root root2 = new Root();
+        root2.setEquationId(equation2.getId());
+        root2.setRootValue(3.);
+        rootService.saveRoot(root2);
+        EquationFilterDto filterDto = new EquationFilterDto();
+        filterDto.setRootValue(3.);
+        List<Equation> equations = equationService.getEquationsFilteredByRootValue(filterDto);
+        assertEquals(2, equations.size(), "Should be 2");
+    }
 
     @DisplayName("Correct root")
     @Test

@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
-<div class="card mb-4 ms-5 me-5">
+<div class="card mt-4 mb-4 ms-5 me-5">
     <form th:action="@{/saveEquation}" method="post" th:object="${equation}" id="equation-form">
         <div class="mb-3 mt-3">
             <h4>Enter expression:</h4>
@@ -16,6 +16,9 @@
         </div>
         <button type="submit" class="btn button_default">Save</button>
     </form>
+</div>
+<div class="ms-5 me-5 mt-5">
+    <a th:href="@{/}" class="btn button_default mt-2">Back to main page</a>
 </div>
 <script th:src="@{/js/bootstrap.js}"></script>
 <script th:src="@{/js/jquery-validator.js}"></script>

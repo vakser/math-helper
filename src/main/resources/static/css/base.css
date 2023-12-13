@@ -1,0 +1,25 @@
+a:hover, a {
+    text-decoration: none;
+    color: #8b78e6;
+}
+
+.button_default, .button_default:hover {
+    background-color: #8b78e6;
+    color: white;
+}
+
+.font-size-medium {
+    font-size: 1.6rem;
+}
+
+.font-size-small {
+    font-size: 1.2rem;
+}
+
+.font-size-xsmall {
+    font-size: 1.0rem;
+}
+
+.error {
+    color: red;
+}

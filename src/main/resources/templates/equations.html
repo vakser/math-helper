@@ -3,40 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>List of equations</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
-<div class="mt-4">
-    <a class="btn button_default text-white" th:href="@{/createEquation}">Add new equation</a>
+<div class="mb-4 ms-5 me-5 mt-4 ">
+    <a class="btn button_default font-size-medium font-weight-bold" th:href="@{/createEquation}">Add new equation</a>
 </div>
-<form method="get" th:object="${filter}" th:action="@{/filterEquationsByRootValue}">
-    <div class="row mb-2">
-        <div class="col-md-2 col-sm-6 col-12 mb-2">
-            <h4>Search by root value</h4>
-            <input type="text" placeholder="Enter root" th:field="${filter.rootValue}" class="form-control"/>
+<div class="card mb-4 ms-5 me-5 row-cols-auto">
+    <form method="get" th:object="${filter}" th:action="@{/filterEquationsByRootValue}">
+        <div class="row mb-2">
+            <div class="col-md-2 col-sm-6 col-12 mb-2 mt-2 ms-2 me-2">
+                <h4>Search by root value</h4>
+                <input type="number" placeholder="Enter root" th:field="${filter.rootValue}" class="form-control"/>
+            </div>
+            <div class="col-12 col-sm-12 col-md-1 mb-2 mt-2 ms-2 me-2">
+                <input type="submit" value="Submit" class="btn button_default form-control"/>
+            </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-1 mb-2">
-            <input type="submit" value="Submit" class="btn button_default form-control"/>
+    </form>
+    <form method="get" th:object="${filter}" th:action="@{/filterEquationsByRootAmount}">
+        <div class="row mb-2">
+            <div class="col-md-2 col-sm-6 col-12 mb-2 mt-2 ms-2 me-2">
+                <h4>Search by root amount</h4>
+                <input type="number" placeholder="Enter number of roots" th:field="${filter.rootAmount}" class="form-control"/>
+            </div>
+            <div class="col-12 col-sm-12 col-md-1 mb-2 mt-2 ms-2 me-2">
+                <input type="submit" value="Submit" class="btn button_default form-control"/>
+            </div>
         </div>
-    </div>
-</form>
-<form method="get" th:object="${filter}" th:action="@{/filterEquationsByRootAmount}">
-    <div class="row mb-2">
-        <div class="col-md-2 col-sm-6 col-12 mb-2">
-            <h4>Search by root amount</h4>
-            <input type="text" placeholder="Enter number of roots" th:field="${filter.rootAmount}" class="form-control"/>
-        </div>
-        <div class="col-12 col-sm-12 col-md-1 mb-2">
-            <input type="submit" value="Submit" class="btn button_default form-control"/>
-        </div>
-    </div>
-</form>
-<hr/>
-<h3>List of Equations</h3>
-<div class="main-content">
-    <div th:each="equation : ${equations}">
-        <p th:text="${equation.expression}"></p>
-        <a class="btn btn-success" th:href="@{/addRoot(id=${equation.getId()})}">Solve equation</a>
-    </div>
+    </form>
 </div>
+<div class="card mb-4 ms-5 me-5">
+    <div class="card-header card-background__header fw-bold">Equation
+        <span class="float-end fw-bold">Solve</span>
+    </div>
+    <table>
+        <div class="border-bottom" th:each="equation : ${equations}">
+            <div class="d-flex flex-row justify-content-between align-items-center px-3 pt-4 pb-2">
+                <div>
+                    <h3 class="text-capitalize text-dark" th:text="${equation.expression}"></h3>
+                </div>
+                <a class="btn button_default" th:href="@{/addRoot(id=${equation.getId()})}">Solve yourself</a>
+            </div>
+        </div>
+    </table>
+</div>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/jquery-validator.js}"></script>
 </body>
 </html>

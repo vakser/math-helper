@@ -1,16 +1,57 @@
 package com.vakaliuk.mathhelper;
 
+import com.vakaliuk.mathhelper.dto.EquationFilterDto;
+import com.vakaliuk.mathhelper.entity.Equation;
+import com.vakaliuk.mathhelper.entity.Root;
+import com.vakaliuk.mathhelper.repository.EquationRepository;
+import com.vakaliuk.mathhelper.repository.RootRepository;
+import com.vakaliuk.mathhelper.service.EquationService;
+import com.vakaliuk.mathhelper.service.RootService;
 import com.vakaliuk.mathhelper.util.Checker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.TestPropertySource;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@TestPropertySource("/application-test.properties")
 @SpringBootTest
-class MathHelperApplicationTests {
+public class MathHelperApplicationModuleTests {
     @Autowired
-    Checker checker;
+    private JdbcTemplate jdbc;
+    @Autowired
+    private EquationRepository equationRepository;
+    @Autowired
+    private RootRepository rootRepository;
+    @Autowired
+    private EquationService equationService;
+    @Autowired
+    private RootService rootService;
+    @Autowired
+    private Checker checker;
+
+    @Test
+    public void createEquationServiceTest() {
+        equationService.createEquation(new Equation("2*x+10=20"));
+        Equation equation = equationRepository.findByExpression("2*x+10=20");
+        assertEquals("2*x+10=20", equation.getExpression(), "find by expression");
+    }
+
+//    @Test
+//    public void getEquationsForRoot() {
+//        //equationService.createEquation(new Equation("2*x+10=20"));
+//        equationService.createEquation(new Equation("10+15/x=13"));
+//        EquationFilterDto filterDto = new EquationFilterDto();
+//        filterDto.setRootValue(5.);
+//        List<Equation> equations = equationService.getEquationsFilteredByRootValue(filterDto);
+//        assertEquals(2, equations.size(), "Should be 2");
+//    }
 
     @DisplayName("Correct root")
     @Test
@@ -47,4 +88,5 @@ class MathHelperApplicationTests {
         String expression = "(5*x + 2))*7=112";
         Assertions.assertFalse(checker.areBracketsBalanced(expression), "brackets are balanced");
     }
+
 }

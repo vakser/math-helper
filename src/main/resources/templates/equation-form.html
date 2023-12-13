@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Equation</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
-<h2>Add your equation below</h2>
-<div class="main-content">
-    <form class="form-control" th:action="@{/saveEquation}" method="post" th:object="${equation}">
+<div class="card mb-4 ms-5 me-5">
+    <form th:action="@{/saveEquation}" method="post" th:object="${equation}" id="equation-form">
         <div class="mb-3 mt-3">
-            <label class="form-label">Equation expression:</label>
-            <input type="text" placeholder="Enter expression" th:field="*{expression}" class="form-control col-12 col-sm-12 col-md-6 input-width mb-3" autofocus="autofocus"/>
-            <span th:if="${#fields.hasErrors('expression')}" th:errors="*{expression}"></span>
+            <h4>Enter expression:</h4>
+            <input type="text" placeholder="Enter expression" th:field="*{expression}" class="form-control"/>
+            <span th:if="${#fields.hasErrors('expression')}" th:errors="*{expression}" class="error"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn button_default">Save</button>
     </form>
 </div>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/jquery-validator.js}"></script>
 </body>
 </html>

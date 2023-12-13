@@ -44,7 +44,7 @@ public class EquationController {
         if (result.hasErrors()) {
             return "equation-form";
         }
-        equationService.saveEquation(equation);
+        equationService.createEquation(equation);
         return "redirect:/";
     }
 

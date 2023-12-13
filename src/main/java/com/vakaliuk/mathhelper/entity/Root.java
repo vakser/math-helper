@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "roots")
@@ -13,7 +14,8 @@ public class Root {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @NotEmpty(message = "Value must not be empty")
-    double value;
+    //@NotEmpty(message = "Value must not be empty")
+    Double value;
     Long equationId;
+
 }

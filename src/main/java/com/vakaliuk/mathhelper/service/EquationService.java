@@ -25,7 +25,7 @@ public class EquationService {
         return equationRepository.findAll();
     }
 
-    public void saveEquation(Equation equation) {
+    public void createEquation(Equation equation) {
         if (!checker.areBracketsBalanced(equation.getExpression()) || checker.containsUnacceptableConsecutiveArithmeticOperators(equation.getExpression())) {
             throw new ExpressionNotValidException("Expression is not valid (either brackets are not balanced or expression " +
                     "contains unacceptable consecutive arithmetic operators)");

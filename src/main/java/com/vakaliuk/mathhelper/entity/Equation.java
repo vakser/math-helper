@@ -14,6 +14,7 @@ public class Equation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "Expression must not be empty")
+    @Column(unique = true)
     private String expression;
 
     public Equation(String expression) {

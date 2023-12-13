@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Message</title>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
 <div th:if="${notCorrect}" class="container p-5 my-5 border container-top-margin">
-  <h1>You entered incorrect root.</h1>
-  <p th:text="${message}"></p>
-  <a th:href="@{'/addRoot?id=' + ${id}}" class="btn button_default">Back to equation</a>
+    <h1>You entered incorrect root.</h1>
+    <p th:text="${message}" class="error"></p>
+    <a th:href="@{'/addRoot?id=' + ${id}}" class="btn button_default">Back to equation</a>
 </div>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/jquery-validator.js}"></script>
 </body>
 </html>

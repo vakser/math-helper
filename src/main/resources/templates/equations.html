@@ -15,7 +15,7 @@
         <div class="row mb-2">
             <div class="col-md-2 col-sm-6 col-12 mb-2 mt-2 ms-2 me-2">
                 <h4>Search by root value</h4>
-                <input type="number" placeholder="Enter root" th:field="${filter.rootValue}" class="form-control"/>
+                <input required="required" type="text" placeholder="Enter root" th:field="${filter.rootValue}" class="form-control"/>
             </div>
             <div class="col-12 col-sm-12 col-md-1 mb-2 mt-2 ms-2 me-2">
                 <input type="submit" value="Submit" class="btn button_default form-control"/>
@@ -26,7 +26,7 @@
         <div class="row mb-2">
             <div class="col-md-2 col-sm-6 col-12 mb-2 mt-2 ms-2 me-2">
                 <h4>Search by root amount</h4>
-                <input type="number" placeholder="Enter number of roots" th:field="${filter.rootAmount}" class="form-control"/>
+                <input required="required" type="number" min="0" max="10" placeholder="Enter number of roots" th:field="${filter.rootAmount}" class="form-control"/>
             </div>
             <div class="col-12 col-sm-12 col-md-1 mb-2 mt-2 ms-2 me-2">
                 <input type="submit" value="Submit" class="btn button_default form-control"/>
@@ -49,7 +49,9 @@
         </div>
     </table>
 </div>
+<div class="ms-5 me-5 mt-5">
+    <a th:if="${filter.rootAmount != null || filter.rootValue != null}" th:href="@{/}" class="btn button_default">Back to main page</a>
+</div>
 <script th:src="@{/js/bootstrap.js}"></script>
-<script th:src="@{/js/jquery-validator.js}"></script>
 </body>
 </html>

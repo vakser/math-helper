@@ -16,7 +16,7 @@
         <div class="row mb-2">
             <div class="col-md-2 col-sm-6 col-12 mb-2 mt-2 ms-2 me-2">
                 <h4>Root value:</h4>
-                <input type="number" placeholder="Enter root (digits only!)" class="form-control" th:field="*{rootValue}">
+                <input required="required" type="text" placeholder="Enter root" class="form-control" th:field="*{rootValue}" autofocus="autofocus">
                 <input type="hidden" class="form-control" th:field="*{equationId}">
             </div>
             <div class="col-12 col-sm-12 col-md-1 mb-2 mt-2 ms-2 me-2">
@@ -29,6 +29,5 @@
     <a th:href="@{/}" class="btn button_default">Back to main page</a>
 </div>
 <script th:src="@{/js/bootstrap.js}"></script>
-<script th:src="@{/js/jquery-validator.js}"></script>
 </body>
 </html>

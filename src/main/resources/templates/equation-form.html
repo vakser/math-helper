@@ -11,7 +11,7 @@
     <form th:action="@{/saveEquation}" method="post" th:object="${equation}" id="equation-form">
         <div class="mb-3 mt-3">
             <h4>Enter expression:</h4>
-            <input type="text" placeholder="Enter expression" th:field="*{expression}" class="form-control"/>
+            <input type="text" placeholder="Enter expression" th:field="*{expression}" class="form-control" autofocus="autofocus"/>
             <span th:if="${#fields.hasErrors('expression')}" th:errors="*{expression}" class="error"></span>
         </div>
         <button type="submit" class="btn button_default">Save</button>
@@ -21,6 +21,5 @@
     <a th:href="@{/}" class="btn button_default mt-2">Back to main page</a>
 </div>
 <script th:src="@{/js/bootstrap.js}"></script>
-<script th:src="@{/js/jquery-validator.js}"></script>
 </body>
 </html>
